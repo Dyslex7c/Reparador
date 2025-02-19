@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Search, Wrench, Zap, PenToolIcon as Tool, Award, Star } from "lucide-react"
+import Link from "next/link"
 import type React from "react"
 
 export default function Home() {
@@ -61,12 +62,20 @@ export default function Home() {
 
         <div ref={heroRef} className="container mx-auto px-4 pt-8 pb-20">
           {/* Logo */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-between items-center mb-8">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-k2Vf4va9d4gB5HLdTtxk8uyYh8SdpS.png"
               alt="QuickFixer Logo"
               className="h-16 w-auto"
             />
+            <div className="space-x-4">
+              <Link href="/login">
+                <Button>Login</Button>
+              </Link>
+              <Link href="/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </div>
           </div>
 
           {/* Search Section */}
@@ -85,9 +94,11 @@ export default function Home() {
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                   <Input placeholder="Enter your location" className="pl-10 bg-white/5 border-white/10 text-white" />
                 </div>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
-                  <Search className="h-5 w-5" />
-                </Button>
+                <Link href="/search">
+                  <Button className="bg-emerald-500 hover:bg-emerald-600">
+                    <Search className="h-5 w-5" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
