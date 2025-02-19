@@ -6,8 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
+interface User {
+  name: string
+  email: string
+}
+
 export default function Dashboard() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null)
   const router = useRouter()
 
   useEffect(() => {
@@ -15,12 +20,11 @@ export default function Dashboard() {
     if (!token) {
       router.push("/login")
     } else {
-      // Fetch user data
       fetchUserData(token)
     }
-  }, [router]) // Added router to dependencies
+  }, [router])
 
-  const fetchUserData = async (token) => {
+  const fetchUserData = async (token: string) => {
     try {
       const response = await fetch("/api/user", {
         headers: {
@@ -60,7 +64,6 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <p>Email: {user.email}</p>
-              {/* Add more user details here */}
             </CardContent>
           </Card>
           <Card className="bg-white/5 border-white/10">
@@ -81,4 +84,3 @@ export default function Dashboard() {
     </div>
   )
 }
-
